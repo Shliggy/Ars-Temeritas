@@ -14,13 +14,53 @@ tasks.named('wrapper', Wrapper).configure {
 }
 
 version = mod_version
-group = mod_group_id
 
 repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'externalmods'
+    }
+
     mavenLocal()
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroup("software.bernie.geckolib")
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
+    maven {
+        name = "Illusive Soulworks maven"
+        url = "https://maven.theillusivec4.top/"
+    }
+    maven {
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        name = 'Forge'
+        url = "https://maven.minecraftforge.net"
+    }
+    maven {
+        name = "OctoStudios"
+        url = uri("https://maven.octo-studios.com/releases")
+    }
+    maven { url 'https://jitpack.io' }
 }
 
 base {
+    version = "${minecraft_version}-${mod_version}"
+    group = mod_group_id
     archivesName = mod_id
 }
 
@@ -32,8 +72,8 @@ neoForge {
     version = project.neo_version
 
     parchment {
-        mappingsVersion = project.parchment_mappings_version
-        minecraftVersion = project.parchment_minecraft_version
+            minecraftVersion = "1.20.6"
+            mappingsVersion = project.parchment_version
     }
 
     // This line is optional. Access Transformers are automatically detected
@@ -112,23 +152,21 @@ configurations {
 }
 
 dependencies {
-    // Example optional mod dependency with JEI
-    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
-    // compileOnly "mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}"
-    // We add the full version to localRuntime, not runtimeOnly, so that we do not publish a dependency on it
-    // localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
+    // Ars Nouveau
+    implementation "com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:${ars_version}"
+    dependencies {
+        implementation "com.hollingsworth.ars_nouveau:ars_nouveau-${minecraft_version}:${ars_version}"
 
-    // Example mod dependency using a mod jar from ./libs with a flat dir repository
-    // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
-    // The group id is ignored when searching -- in this case, it is "blank"
-    // implementation "blank:coolmod-${mc_version}:${coolmod_version}"
+        implementation "software.bernie.geckolib:geckolib-neoforge-1.21:${geckolib_version}"
+        implementation "vazkii.patchouli:Patchouli:1.21-${patchouli_version}"
 
-    // Example mod dependency using a file as dependency
-    // implementation files("libs/coolmod-${mc_version}-${coolmod_version}.jar")
-
-    // Example project dependency using a sister or child project:
-    // implementation project(":myproject")
+        compileOnly "mezz.jei:jei-1.21-neoforge-api:${jei_version}"
+        implementation "mezz.jei:jei-1.21-neoforge:${jei_version}"
+        implementation 'com.github.glitchfiend:TerraBlender-neoforge:1.21-4.0.0.0'
+        implementation "curse.maven:jade-324717:5444008"
+        implementation 'top.theillusivec4.curios:curios-neoforge:9.0.4+1.21'
+        compileOnly "curse.maven:ars-elemental-561470:5255908"
+    }
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
@@ -172,6 +210,13 @@ publishing {
     repositories {
         maven {
             url "file://${project.projectDir}/repo"
+        }
+        maven {
+            name = 'GeckoLib'
+            url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+            content {
+                includeGroup("software.bernie.geckolib")
+            }
         }
     }
 }

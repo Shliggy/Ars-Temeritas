@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key":{
+    "A":{
+      "item": "minecraft:apple"
+    },
+    "B": {
+      "item": "ars_nouveau:sourceberry_bush"
+    },
+  "pattern": [
+    " B ",
+    "BAB",
+    " B "
+  ],
+    "result":{
+      "count": 1,
+      "id": "ars_temeritas:source_touched_apple"
+    }
+  }
+}
+

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key":{
+    "A":{
+      "item": "minecraft:apple"
+    },
+    "B": {
+      "item": "ars_temeritas:sourceberry_bundle"
+    },
+  "pattern": [
+    " B ",
+    "BAB",
+    " B "
+  ],
+    "result":{
+      "count": 1,
+      "id": "ars_temeritas:source_bound_apple"
+    }
+  }
+}
+

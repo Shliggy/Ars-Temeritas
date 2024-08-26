@@ -16,10 +16,17 @@ import org.lwjgl.glfw.GLFW;
 public class ModKeybindings {
     public static final String CATEGORY = "key.category.ars_temeritas.general";
 
+    public static final KeyMapping TOGGLE_CHANT = new KeyMapping(
+                    "key.ars_temeritas.toggle_chant",
+                    KeyConflictContext.IN_GAME,
+                    InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_CONTROL,
+                    CATEGORY);
+
     public static final KeyMapping CHANT_FORM = new KeyMapping(
                     "key.ars_temeritas.chant_form",
                     ArsTemeritasKeyConflictContext.CHANT_FORM,
-                    KeyModifier.CONTROL, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UP,
+                    KeyModifier.CONTROL,
+                    InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UP,
                     CATEGORY);
 
     public static final KeyMapping CHANT_EFFECT =  new KeyMapping(
@@ -31,11 +38,13 @@ public class ModKeybindings {
     public static final KeyMapping CHANT_AUGMENT = new KeyMapping(
                     "key.ars_temeritas.chant_augment",
                     ArsTemeritasKeyConflictContext.CHANT_AUGMENT,
-                    KeyModifier.SHIFT, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UP,
+                    KeyModifier.SHIFT,
+                    InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_RIGHT,
                     CATEGORY);
 
     @SubscribeEvent
     public static void register(RegisterKeyMappingsEvent event) {
+        event.register(TOGGLE_CHANT);
         event.register(CHANT_FORM);
         event.register(CHANT_EFFECT);
         event.register(CHANT_AUGMENT);

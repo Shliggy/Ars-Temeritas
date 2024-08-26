@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "A": {
-      "item": "minecraft:apple"
-    },
     "B": {
-      "item": "ars_nouveau:sourceberry_bush"
+      "item": "minecraft:golden_ingot"
+    },
+    "A": {
+      "item": "ars_nouveau:source_gem"
     }
   },
   "pattern": [
@@ -16,6 +16,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "ars_temeritas:source_touched_apple"
+    "id": "ars_temeritas:spell_inscription_smithing_template"
   }
 }

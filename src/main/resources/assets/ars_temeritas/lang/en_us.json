@@ -1,5 +1,9 @@
 {
   "item.ars_temeritas.sourceberry_bundle": "Sourceberry Bundle",
   "item.ars_temeritas.source_touched_apple": "Source-Touched Apple",
-  "item.ars_temeritas.source_bound_apple": "Source-Bound Apple"
+  "item.ars_temeritas.source_bound_apple": "Source-Bound Apple",
+  "item.ars_temeritas.spell_inscription_smithing_template": "Smithing Template",
+  "key.ars_temeritas.chant_form": "Chant Form",
+  "key.ars_temeritas.chant_effect": "Chant Effect",
+  "key.ars_temeritas.chant_augment": "Chant Augment"
 }

@@ -6,7 +6,6 @@ import net.minecraft.client.KeyMapping;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.jarjar.nio.util.Lazy;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.settings.IKeyConflictContext;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
@@ -15,31 +14,34 @@ import org.lwjgl.glfw.GLFW;
 
 @EventBusSubscriber(modid = ArsTemeritas.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ModKeybindings {
-    public static final Lazy<KeyMapping>CHANT_FORM = Lazy.of(() -> new KeyMapping(
+    public static final String CATEGORY = "key.category.ars_temeritas.general";
+
+    public static final KeyMapping CHANT_FORM = new KeyMapping(
                     "key.ars_temeritas.chant_form",
                     ArsTemeritasKeyConflictContext.CHANT_FORM,
-                    InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UP,
-                    "key.categories.misc"));
+                    KeyModifier.CONTROL, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UP,
+                    CATEGORY);
 
-    public static final Lazy<KeyMapping>CHANT_EFFECT = Lazy.of(() -> new KeyMapping(
+    public static final KeyMapping CHANT_EFFECT =  new KeyMapping(
                     "key.ars_temeritas.chant_effect",
                     ArsTemeritasKeyConflictContext.CHANT_EFFECT,
-                    InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UP,
-                    "key.categories.misc"));
+                    InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_LEFT,
+                    CATEGORY);
 
-    public static final Lazy<KeyMapping>CHANT_AUGMENT = Lazy.of(() -> new KeyMapping(
+    public static final KeyMapping CHANT_AUGMENT = new KeyMapping(
                     "key.ars_temeritas.chant_augment",
                     ArsTemeritasKeyConflictContext.CHANT_AUGMENT,
                     KeyModifier.SHIFT, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UP,
-                    "key.categories.misc"));
+                    CATEGORY);
 
     @SubscribeEvent
     public static void register(RegisterKeyMappingsEvent event) {
-        event.register(CHANT_FORM.get());
-        event.register(CHANT_EFFECT.get());
-        event.register(CHANT_AUGMENT.get());
+        event.register(CHANT_FORM);
+        event.register(CHANT_EFFECT);
+        event.register(CHANT_AUGMENT);
     }
 
+    // this literally doesn't work
     public enum ArsTemeritasKeyConflictContext implements IKeyConflictContext{
         CHANT_FORM {
             @Override

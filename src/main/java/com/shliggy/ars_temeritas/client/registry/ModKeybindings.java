@@ -13,6 +13,7 @@ import org.lwjgl.glfw.GLFW;
 public class ModKeybindings {
     public static final String CATEGORY = "key.category.ars_temeritas.general";
 
+
     public static final KeyMapping CHANT_FORM_EFFECT = new KeyMapping(
                     "key.ars_temeritas.chant_form_effect",
                     InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_CONTROL,

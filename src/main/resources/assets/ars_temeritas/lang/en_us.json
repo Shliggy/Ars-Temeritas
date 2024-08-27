@@ -5,7 +5,6 @@
   "item.ars_temeritas.spell_inscription_smithing_template": "Smithing Template",
 
   "key.category.ars_temeritas.general": "Ars Temeritas",
-  "key.ars_temeritas.chant_form": "Chant Form",
-  "key.ars_temeritas.chant_effect": "Chant Effect",
+  "key.ars_temeritas.chant_form_effect": "Chant Form/Effect",
   "key.ars_temeritas.chant_augment": "Chant Augment"
 }

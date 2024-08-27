@@ -1,5 +1,6 @@
 package com.shliggy.ars_temeritas;
 
+import com.shliggy.ars_temeritas.client.ClientTick;
 import com.shliggy.ars_temeritas.item.ModItems;
 import org.slf4j.Logger;
 
@@ -30,6 +31,7 @@ public class ArsTemeritas
     {
         modEventBus.addListener(this::commonSetup);
         NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(ClientTick.class);
 
         ModItems.register(modEventBus);
         // Register the item to a creative tab

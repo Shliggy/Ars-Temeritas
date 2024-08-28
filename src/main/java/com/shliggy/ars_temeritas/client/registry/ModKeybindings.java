@@ -7,48 +7,66 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
-import net.neoforged.neoforge.client.settings.IKeyConflictContext;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import org.lwjgl.glfw.GLFW;
 
 @EventBusSubscriber(modid = ArsTemeritas.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ModKeybindings {
-    public static final String CATEGORY = "key.category.ars_temeritas.general";
+    public static final String CATEGORY_GENERAL = "key.category.ars_temeritas.general";
+    public static final String CATEGORY_LYRICS = "key.category.ars_temeritas.lyrics";
 
-    // IDEA: key bind (e.g. here) is CONTROL and i just .get() other pressed keys to use a specific glyph
-    public static final KeyMapping CHANT_FORM_EFFECT =  new KeyMapping(
-                    "key.ars_temeritas.chant_form_effect",
-                    ArsTemeritasKeyConflictContext.CHANT_FORM_EFFECT,
-                    InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_CONTROL,
-                    CATEGORY);
+    public static final KeyMapping CHANT_TOGGLE = new KeyMapping(
+            "key.ars_temeritas.chant_toggle",
+            KeyConflictContext.IN_GAME,
+            InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_APOSTROPHE,
+            CATEGORY_GENERAL);
 
-    public static final KeyMapping CHANT_AUGMENT = new KeyMapping(
-                    "key.ars_temeritas.chant_augment",
-                    ArsTemeritasKeyConflictContext.CHANT_AUGMENT,
-                    InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_SHIFT,
-                    CATEGORY);
+    // CL - Chant lyric, possible chant craft bypass: binding every bind to one key
+    public static final KeyMapping CL_1 = new KeyMapping("key.ars_temeritas.cl1", -1, CATEGORY_LYRICS);
+    public static final KeyMapping CL_2 = new KeyMapping("key.ars_temeritas.cl2", -1, CATEGORY_LYRICS);
+    public static final KeyMapping CL_3 = new KeyMapping("key.ars_temeritas.cl3", -1, CATEGORY_LYRICS);
+    public static final KeyMapping CL_4 = new KeyMapping("key.ars_temeritas.cl4", -1, CATEGORY_LYRICS);
+    public static final KeyMapping CL_5 = new KeyMapping("key.ars_temeritas.cl5", -1, CATEGORY_LYRICS);
+    public static final KeyMapping CL_6 = new KeyMapping("key.ars_temeritas.cl6", -1, CATEGORY_LYRICS);
+    public static final KeyMapping CL_7 = new KeyMapping("key.ars_temeritas.cl7", -1, CATEGORY_LYRICS);
+    public static final KeyMapping CL_8 = new KeyMapping("key.ars_temeritas.cl8", -1, CATEGORY_LYRICS);
+    public static final KeyMapping CL_9 = new KeyMapping("key.ars_temeritas.cl9", -1, CATEGORY_LYRICS);
 
     @SubscribeEvent
     public static void register(RegisterKeyMappingsEvent event) {
-        event.register(CHANT_FORM_EFFECT);
-        event.register(CHANT_AUGMENT);
+        event.register(CHANT_TOGGLE);
+        event.register(CL_1);
+        event.register(CL_2);
+        event.register(CL_3);
+        event.register(CL_4);
+        event.register(CL_5);
+        event.register(CL_6);
+        event.register(CL_7);
+        event.register(CL_8);
+        event.register(CL_9);
     }
 
-    // this literally doesn't work
-    public enum ArsTemeritasKeyConflictContext implements IKeyConflictContext{
-        CHANT_FORM_EFFECT {
-            @Override
-            public boolean isActive() { return KeyConflictContext.IN_GAME.isActive(); }
+    // Ty @baileyholl https://github.com/baileyholl/Ars-Nouveau/blob/1.21.x/src/main/java/com/hollingsworth/arsnouveau/client/registry/ModKeyBindings.java
+    public static int usedChantLyric(int key) {
+        for (ChantLyric q : ChantLyric.VALUES) {
+            if (q.key().getKey().getValue() == key) {
+                return q.slot;
+            }
+        }
+        return -1;
+    }
 
-            @Override
-            public boolean conflicts(IKeyConflictContext other) { return this == other; }
-        },
-        CHANT_AUGMENT {
-            @Override
-            public boolean isActive() { return KeyConflictContext.IN_GAME.isActive(); }
-
-            @Override
-            public boolean conflicts(IKeyConflictContext other) { return this == other; }
-        },
+    public record ChantLyric(int slot, KeyMapping key) {
+        public static final ChantLyric[] VALUES = new ChantLyric[]{
+                new ChantLyric(1, CL_1),
+                new ChantLyric(2, CL_2),
+                new ChantLyric(3, CL_3),
+                new ChantLyric(4, CL_4),
+                new ChantLyric(5, CL_5),
+                new ChantLyric(6, CL_6),
+                new ChantLyric(7, CL_7),
+                new ChantLyric(8, CL_8),
+                new ChantLyric(9, CL_9)
+        };
     }
 }

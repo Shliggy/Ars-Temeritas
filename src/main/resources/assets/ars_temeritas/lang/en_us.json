@@ -4,7 +4,18 @@
   "item.ars_temeritas.source_bound_apple": "Source-Bound Apple",
   "item.ars_temeritas.spell_inscription_smithing_template": "Smithing Template",
 
-  "key.category.ars_temeritas.general": "Ars Temeritas",
-  "key.ars_temeritas.chant_form_effect": "Chant Form/Effect",
-  "key.ars_temeritas.chant_augment": "Chant Augment"
+  "item.ars_temeritas.spell_lyrics": "Spell Lyrics",
+
+  "key.category.ars_temeritas.general": "Ars Temeritas - General",
+  "key.category.ars_temeritas.lyrics":  "Ars Temeritas - Lyrics",
+  "key.ars_temeritas.chant_toggle": "Start/Stop Chant",
+  "key.ars_temeritas.cl1": "Chant 1st Lyric",
+  "key.ars_temeritas.cl2": "Chant 2nd Lyric",
+  "key.ars_temeritas.cl3": "Chant 3rd Lyric",
+  "key.ars_temeritas.cl4": "Chant 4th Lyric",
+  "key.ars_temeritas.cl5": "Chant 5th Lyric",
+  "key.ars_temeritas.cl6": "Chant 6th Lyric",
+  "key.ars_temeritas.cl7": "Chant 7th Lyric",
+  "key.ars_temeritas.cl8": "Chant 8th Lyric",
+  "key.ars_temeritas.cl9": "Chant 9th Lyric"
 }

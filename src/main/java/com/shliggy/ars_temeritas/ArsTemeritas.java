@@ -1,6 +1,6 @@
 package com.shliggy.ars_temeritas;
 
-import com.shliggy.ars_temeritas.client.registry.ModKeybindings;
+import com.shliggy.ars_temeritas.client.KeyHandler;
 import com.shliggy.ars_temeritas.item.ModItems;
 import org.slf4j.Logger;
 
@@ -19,8 +19,6 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
-import java.beans.EventHandler;
-
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ArsTemeritas.MODID)
 public class ArsTemeritas
@@ -33,7 +31,7 @@ public class ArsTemeritas
     {
         modEventBus.addListener(this::commonSetup);
         NeoForge.EVENT_BUS.register(this);
-        NeoForge.EVENT_BUS.register(ModKeybindings.class);
+        NeoForge.EVENT_BUS.register(KeyHandler.class);
 
         ModItems.register(modEventBus);
         // Register the item to a creative tab
